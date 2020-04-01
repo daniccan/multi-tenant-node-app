@@ -1,15 +1,12 @@
-var userService = require('./user_service');
+const userService = require('./user_service');
+const responder = require('../utils/responder');
 
 let UserController = {
 
   getUsers: async (request, response, next) => {
     try {
       let users = await userService.getUsers();
-      response.status(200).json({
-        status: "success",
-        data: users,
-        message: "Users retrieved successfully."
-      });
+      responder.sendResponse(response, 200, "success", users, "Users retrieved successfully.");
     } catch (error) {
       return next(error);
     }
@@ -17,12 +14,9 @@ let UserController = {
 
   getUser: async (request, response, next) => {
     try {
-      let user = await userService.getUser();
-      response.status(200).json({
-        status: "success",
-        data: user,
-        message: "User retrieved successfully."
-      });
+      let userId = request.params.userId;
+      let user = await userService.getUser(userId);
+      responder.sendResponse(response, 200, "success", user, "User retrieved successfully.");
     } catch (error) {
       return next(error);
     }

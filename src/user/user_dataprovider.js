@@ -1,12 +1,28 @@
+const db = require("../../models");
+const User = db.User;
 
 let UserDataProvider = {
 
   getUsers: async() => {
-    return [{"name": "user 1"}, {"name": "user 2"}];
+    return new Promise(function(resolve, reject) {
+      User.findAll()
+        .then(data => {
+          resolve(data);
+        }).catch(err => {
+          reject(err);
+        });
+    });
   },
 
-  getUser: async() => {
-    return {"name": "user 3"};
+  getUser: async(userId) => {
+    return new Promise(function(resolve, reject) {
+      User.findByPk(userId)
+        .then(data => {
+          resolve(data);
+        }).catch(err => {
+          reject(err);
+        });
+    });
   },
 
   createUser: async() => {

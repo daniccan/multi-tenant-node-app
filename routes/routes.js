@@ -9,7 +9,7 @@ router.get('/organizations', function (request, response, next) {
   organizationController.getOrganizations(request, response, next);
 });
 
-router.get('/organization/:organizationId', function (request, response, next) {
+router.get('/organizations/:organizationId', function (request, response, next) {
   organizationController.getOrganization(request, response, next);
 });
 

@@ -1,4 +1,4 @@
-var organizationDataProvider = require('./organization_dataprovider');
+const organizationDataProvider = require('./organization_dataprovider');
 
 let OrganizationService = {
 
@@ -7,8 +7,8 @@ let OrganizationService = {
     return organizations;
   },
 
-  getOrganization: async() => {
-    let organization = await organizationDataProvider.getOrganization();
+  getOrganization: async(organizationId) => {
+    let organization = await organizationDataProvider.getOrganization(organizationId);
     return organization;
   },
 

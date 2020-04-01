@@ -1,12 +1,28 @@
+const db = require("../../models");
+const Organization = db.Organization;
 
 let OrganizationDataProvider = {
 
   getOrganizations: async() => {
-    return [{"name": "organization 1"}, {"name": "organization 2"}];
+    return new Promise(function(resolve, reject) {
+      Organization.findAll()
+        .then(data => {
+          resolve(data);
+        }).catch(err => {
+          reject(err);
+        });
+    });
   },
 
-  getOrganization: async() => {
-    return {"name": "organization 3"};
+  getOrganization: async(organizationId) => {
+    return new Promise(function(resolve, reject) {
+      Organization.findByPk(organizationId)
+        .then(data => {
+          resolve(data);
+        }).catch(err => {
+          reject(err);
+        });
+    });
   },
 
   createOrganization: async() => {

@@ -1,4 +1,4 @@
-var userDataProvider = require('./user_dataprovider');
+const userDataProvider = require('./user_dataprovider');
 
 let UserService = {
 
@@ -7,8 +7,8 @@ let UserService = {
     return users;
   },
 
-  getUser: async() => {
-    let user = await userDataProvider.getUser();
+  getUser: async(userId) => {
+    let user = await userDataProvider.getUser(userId);
     return user;
   },
 
