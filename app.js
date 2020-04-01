@@ -1,10 +1,12 @@
-var createError = require('http-errors');
-var express = require('express');
-var logger = require('morgan');
-var bodyParser = require('body-parser');
-var appRouter = require('./routes/routes');
+const createError = require('http-errors');
+const express = require('express');
+const logger = require('morgan');
+const bodyParser = require('body-parser');
+const authRouter = require('./routes/auth');
+const appRouter = require('./routes/routes');
+require('./passport');
 
-var app = express();
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -27,6 +29,7 @@ app.use(function (req, res, next) {
   }
 });
 
+app.use('/auth', authRouter);
 app.use('/api/v1', appRouter);
 
 // catch 404 and forward to error handler

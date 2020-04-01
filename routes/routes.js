@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var organizationController = require('../src/organization/organization_controller');
-var userController = require('../src/user/user_controller');
+const organizationController = require('../src/organization/organization_controller');
+const userController = require('../src/user/user_controller');
 
 // Organization Routes
 router.get('/organizations', function (request, response, next) {
