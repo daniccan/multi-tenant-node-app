@@ -16,7 +16,7 @@ let OrganizationDataProvider = {
 
   getOrganization: async(organizationId) => {
     return new Promise(function(resolve, reject) {
-      Organization.findByPk(organizationId)
+      Organization.findOne({ where: { id: organizationId } })
         .then(data => {
           resolve(data);
         }).catch(err => {
@@ -37,7 +37,7 @@ let OrganizationDataProvider = {
   },
 
   updateOrganization: async() => {
-    return {"name": "organization 5"};
+    return null;
   },
 
   deleteOrganization: async(organizationId) => {

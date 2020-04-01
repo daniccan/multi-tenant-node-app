@@ -32,7 +32,7 @@
   "firstName": "John",
   "lastName": "Doe",
   "email": "johndoe@github.com",
-  "password": "password"
+  "password": "5f4dcc3b5aa765d61d8327deb882cf99"
 }
 ```
 

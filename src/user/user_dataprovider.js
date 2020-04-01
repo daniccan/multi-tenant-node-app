@@ -5,7 +5,7 @@ let UserDataProvider = {
 
   getUsers: async() => {
     return new Promise(function(resolve, reject) {
-      User.findAll()
+      User.findAll({ attributes: { exclude: ['password'] } })
         .then(data => {
           resolve(data);
         }).catch(err => {
@@ -16,7 +16,7 @@ let UserDataProvider = {
 
   getUser: async(userId) => {
     return new Promise(function(resolve, reject) {
-      User.findByPk(userId)
+      User.findOne({ where: { id: userId }, attributes: { exclude: ['password'] } })
         .then(data => {
           resolve(data);
         }).catch(err => {
@@ -37,7 +37,7 @@ let UserDataProvider = {
   },
 
   updateUser: async() => {
-    return {"name": "user 5"};
+    return null;
   },
 
   deleteUser: async(userId) => {
