@@ -25,16 +25,30 @@ let UserDataProvider = {
     });
   },
 
-  createUser: async() => {
-    return {"name": "user 4"};
+  createUser: async(body) => {
+    return new Promise(function(resolve, reject) {
+      User.create(body)
+        .then(data => {
+          resolve(data);
+        }).catch(err => {
+          reject(err);
+        });
+    });
   },
 
   updateUser: async() => {
     return {"name": "user 5"};
   },
 
-  deleteUser: async() => {
-    return {"name": "user 6"};
+  deleteUser: async(userId) => {
+    return new Promise(function(resolve, reject) {
+      User.destroy({ where: { id: userId } })
+        .then(data => {
+          resolve(data);
+        }).catch(err => {
+          reject(err);
+        });
+    });
   }
 
 };

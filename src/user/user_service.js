@@ -12,8 +12,8 @@ let UserService = {
     return user;
   },
 
-  createUser: async() => {
-    let user = await userDataProvider.createUser();
+  createUser: async(body) => {
+    let user = await userDataProvider.createUser(body);
     return user;
   },
 
@@ -22,8 +22,8 @@ let UserService = {
     return user;
   },
 
-  deleteUser: async() => {
-    let user = await userDataProvider.deleteUser();
+  deleteUser: async(userId) => {
+    let user = await userDataProvider.deleteUser(userId);
     return user;
   }
 

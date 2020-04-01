@@ -24,12 +24,9 @@ let UserController = {
 
   createUser: async (request, response, next) => {
     try {
-      let user = await userService.createUser();
-      response.status(200).json({
-        status: "success",
-        data: user,
-        message: "User created successfully."
-      });
+      let body = request.body;
+      let user = await userService.createUser(body);
+      responder.sendResponse(response, 200, "success", user, "User created successfully.");
     } catch (error) {
       return next(error);
     }
@@ -50,12 +47,9 @@ let UserController = {
 
   deleteUser: async (request, response, next) => {
     try {
-      let user = await userService.deleteUser();
-      response.status(200).json({
-        status: "success",
-        data: user,
-        message: "User deleted successfully."
-      });
+      let userId = request.params.userId;
+      let user = await userService.deleteUser(userId);
+      responder.sendResponse(response, 200, "success", user, "User deleted successfully.");
     } catch (error) {
       return next(error);
     }

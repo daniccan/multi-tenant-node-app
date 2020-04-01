@@ -24,12 +24,9 @@ let OrganizationController = {
 
   createOrganization: async (request, response, next) => {
     try {
-      let organization = await organizationService.createOrganization();
-      response.status(200).json({
-        status: "success",
-        data: organization,
-        message: "Organization created successfully."
-      });
+      let body = request.body;
+      let organization = await organizationService.createOrganization(body);
+      responder.sendResponse(response, 200, "success", organization, "Organization created successfully.");
     } catch (error) {
       return next(error);
     }
@@ -50,12 +47,9 @@ let OrganizationController = {
 
   deleteOrganization: async (request, response, next) => {
     try {
-      let organization = await organizationService.deleteOrganization();
-      response.status(200).json({
-        status: "success",
-        data: organization,
-        message: "Organization deleted successfully."
-      });
+      let organizationId = request.params.organizationId;
+      let organization = await organizationService.deleteOrganization(organizationId);
+      responder.sendResponse(response, 200, "success", organization, "Organization deleted successfully.");
     } catch (error) {
       return next(error);
     }

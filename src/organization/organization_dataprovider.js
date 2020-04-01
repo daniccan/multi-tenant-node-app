@@ -25,16 +25,30 @@ let OrganizationDataProvider = {
     });
   },
 
-  createOrganization: async() => {
-    return {"name": "organization 4"};
+  createOrganization: async(body) => {
+    return new Promise(function(resolve, reject) {
+      Organization.create(body)
+        .then(data => {
+          resolve(data);
+        }).catch(err => {
+          reject(err);
+        });
+    });
   },
 
   updateOrganization: async() => {
     return {"name": "organization 5"};
   },
 
-  deleteOrganization: async() => {
-    return {"name": "organization 6"};
+  deleteOrganization: async(organizationId) => {
+    return new Promise(function(resolve, reject) {
+      Organization.destroy({ where: { id: organizationId } })
+        .then(data => {
+          resolve(data);
+        }).catch(err => {
+          reject(err);
+        });
+    });
   }
 
 };

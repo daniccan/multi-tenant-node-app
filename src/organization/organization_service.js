@@ -12,8 +12,8 @@ let OrganizationService = {
     return organization;
   },
 
-  createOrganization: async() => {
-    let organization = await organizationDataProvider.createOrganization();
+  createOrganization: async(body) => {
+    let organization = await organizationDataProvider.createOrganization(body);
     return organization;
   },
 
@@ -22,8 +22,8 @@ let OrganizationService = {
     return organization;
   },
 
-  deleteOrganization: async() => {
-    let organization = await organizationDataProvider.deleteOrganization();
+  deleteOrganization: async(organizationId) => {
+    let organization = await organizationDataProvider.deleteOrganization(organizationId);
     return organization;
   }
 
