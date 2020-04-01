@@ -2,6 +2,23 @@
 
 ## APIs
 
+**Note:** For APIs other than `/auth/login`, pass the `JWT Token` as `Authorization` header.
+
+```
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3ROYW1lIjoiSm9obiIsImxhc3ROYW1lIjoiRG9lIiwiZW1haWwiOiJqb2huZG9lQGdpdGh1Yi5jb20iLCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJjcmVhdGVkQXQiOiIyMDIwLTA0LTAxVDExOjMzOjQ5LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIwLTA0LTAxVDExOjMzOjQ5LjAwMFoiLCJPcmdhbml6YXRpb25JZCI6bnVsbCwiaWF0IjoxNTg1NzUxMDMwfQ.pFM0DspqwJX87jqYF846Dn-k6XSB_EIjUImT6n1tjcI 
+```
+
+### Authentication
+
+* POST `/auth/login`
+
+```
+{
+  "email": "johndoe@github.com",
+  "password": "5f4dcc3b5aa765d61d8327deb882cf99"
+}
+```
+
 ### Organizations
 
 * GET `/api/v1/organizations`

@@ -4,6 +4,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const authRouter = require('./routes/auth');
 const appRouter = require('./routes/routes');
+const passport = require('passport');
 require('./passport');
 
 const app = express();
@@ -30,7 +31,7 @@ app.use(function (req, res, next) {
 });
 
 app.use('/auth', authRouter);
-app.use('/api/v1', appRouter);
+app.use('/api/v1', passport.authenticate('jwt', {session: false}), appRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
