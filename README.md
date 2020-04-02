@@ -2,10 +2,25 @@
 
 ## APIs
 
-**Note:** For APIs other than `/auth/login`, pass the `JWT Token` in the `Authorization` header of the request.
+**Note:** For APIs other than `Signup` and `Authentication`, pass the `JWT Token` in the `Authorization` header of the request.
 
 ```
 Authorization: Bearer <JWT Token>
+```
+
+### Signup
+
+* POST `/api/v1/accounts/signup`
+
+```
+{
+  "name": "Alphabet",
+  "domain": "alphabet.com",
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "johndoe@alphabet.com",
+  "password": "5f4dcc3b5aa765d61d8327deb882cf99"
+}
 ```
 
 ### Authentication
