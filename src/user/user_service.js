@@ -2,28 +2,28 @@ const userDataProvider = require('./user_dataprovider');
 
 let UserService = {
 
-  getUsers: async() => {
-    let users = await userDataProvider.getUsers();
+  getUsers: async(dbKey) => {
+    let users = await userDataProvider.getUsers(dbKey);
     return users;
   },
 
-  getUser: async(userId) => {
-    let user = await userDataProvider.getUser(userId);
+  getUser: async(userId, dbKey) => {
+    let user = await userDataProvider.getUser(userId, dbKey);
     return user;
   },
 
-  createUser: async(body) => {
-    let user = await userDataProvider.createUser(body);
+  createUser: async(body, dbKey) => {
+    let user = await userDataProvider.createUser(body, dbKey);
     return user;
   },
 
-  updateUser: async() => {
+  updateUser: async(dbKey) => {
     let user = await userDataProvider.updateUser();
     return user;
   },
 
-  deleteUser: async(userId) => {
-    let user = await userDataProvider.deleteUser(userId);
+  deleteUser: async(userId, dbKey) => {
+    let user = await userDataProvider.deleteUser(userId, dbKey);
     return user;
   }
 

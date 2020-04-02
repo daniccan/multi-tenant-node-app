@@ -1,12 +1,13 @@
 const userService = require('./user_service');
 const responder = require('../utils/responder');
+const common = require('../utils/common');
 
 let UserController = {
 
   getUsers: async (request, response, next) => {
-    console.log(request.headers['x-tenant-id']);
     try {
-      let users = await userService.getUsers();
+      let dbKey = common.getDBKeyFromRequest(request);
+      let users = await userService.getUsers(dbKey);
       responder.sendResponse(response, 200, "success", users, "Users retrieved successfully.");
     } catch (error) {
       return next(error);
@@ -15,8 +16,9 @@ let UserController = {
 
   getUser: async (request, response, next) => {
     try {
+      let dbKey = common.getDBKeyFromRequest(request);
       let userId = request.params.userId;
-      let user = await userService.getUser(userId);
+      let user = await userService.getUser(userId, dbKey);
       responder.sendResponse(response, 200, "success", user, "User retrieved successfully.");
     } catch (error) {
       return next(error);
@@ -25,8 +27,9 @@ let UserController = {
 
   createUser: async (request, response, next) => {
     try {
+      let dbKey = common.getDBKeyFromRequest(request);
       let body = request.body;
-      let user = await userService.createUser(body);
+      let user = await userService.createUser(body, dbKey);
       responder.sendResponse(response, 200, "success", user, "User created successfully.");
     } catch (error) {
       return next(error);
@@ -35,7 +38,8 @@ let UserController = {
 
   updateUser: async (request, response, next) => {
     try {
-      let user = await userService.updateUser();
+      let dbKey = common.getDBKeyFromRequest(request);
+      let user = await userService.updateUser(dbKey);
       response.status(200).json({
         status: "success",
         data: user,
@@ -48,8 +52,9 @@ let UserController = {
 
   deleteUser: async (request, response, next) => {
     try {
+      let dbKey = common.getDBKeyFromRequest(request);
       let userId = request.params.userId;
-      let user = await userService.deleteUser(userId);
+      let user = await userService.deleteUser(userId, dbKey);
       responder.sendResponse(response, 200, "success", user, "User deleted successfully.");
     } catch (error) {
       return next(error);
