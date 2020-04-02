@@ -4,12 +4,37 @@
 
 This is a proof-of-concept (POC), multi-tenant [RESTful Web Services](https://restfulapi.net/) application built on top of [NodeJS](https://nodejs.org/en/).
 
+## Get Started
+
+* Install dependencies.
+```
+npm install
+```
+* Verify the Database configuration in `config/config.json`.
+* Run migrations on the main database.
+```
+npx sequelize-cli db:migrate
+```
+* Start the application.
+```
+npm start
+```
+* Perform API requests.
+
 ## APIs
 
-**Note:** For APIs other than `Signup` and `Authentication`, pass the `JWT Token` in the `Authorization` header of the request.
+### HTTP Headers
+
+* For APIs other than `Signup` and `Authentication`, pass the `JWT Token` in the `Authorization` header of the request.
 
 ```
 Authorization: Bearer <JWT Token>
+```
+
+* For APIs other than `Signup`, pass the `Tenant ID` in the `X-TENANT-ID` custom header of the request.
+
+```
+X-TENANT-ID: <Tenant ID>
 ```
 
 ### Signup

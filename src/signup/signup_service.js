@@ -1,4 +1,5 @@
 const signupDataProvider = require('./signup_dataprovider');
+const userDataProvider = require('../user/user_dataprovider');
 const logger = require('../utils/logger');
 
 let SignupService = {
@@ -10,6 +11,15 @@ let SignupService = {
     
     logger.info(`Create Tenant for Account[ID: ${account.id}]`);
     await signupDataProvider.createTenantDB(account.id);
+
+    logger.info(`Add User to Tenant DB[Email: ${body.email}]`);
+    await userDataProvider.createUser({
+      "firstName": body.firstName,
+      "lastName": body.lastName,
+      "email": body.email,
+      "password": body.password,
+      "isSuperAdmin": true
+    }, `tenant_${account.id}`);
 
     return account;
   }

@@ -8,6 +8,7 @@ const Account = dbRepo['default'].Account;
 
 const cli = require('../utils/cli');
 const logger = require('../utils/logger');
+const dbConnector = require('../utils/dbconnector');
 
 let SignupDataProvider = {
 
@@ -30,6 +31,8 @@ let SignupDataProvider = {
 
     logger.info(`Run Migrations on Tenant Database[Name: tenant_${accountId}]`);
     await cli.executeCommand(`node_modules/.bin/sequelize db:migrate --url ${connectionString} --migrations-path=${migrationPath}`);
+  
+    dbConnector.addSequelizeConnectionToRepo(dbRepo, `tenant_${accountId}`);
   },
 
   getAccount: async(accountId) => {

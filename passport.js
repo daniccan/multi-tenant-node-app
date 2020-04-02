@@ -15,8 +15,8 @@ passport.use(new LocalStrategy(
     passwordField: 'password',
     passReqToCallback: true
   },
-  function(request, email, password, done) {
-    let dbKey = common.getDBKeyFromRequest(request);
+  async function(request, email, password, done) {
+    let dbKey = await common.getDBKeyFromRequest(request);
     const User = dbRepo[dbKey].User;
     return User.findOne({ where: { email: email, password: password }, attributes: { exclude: ['password'] } })
       .then(user => {
@@ -34,8 +34,8 @@ passport.use(new JWTStrategy(
     secretOrKey: 'your_jwt_secret',
     passReqToCallback: true
   }, 
-  function (request, jwtPayload, done) {  
-    let dbKey = common.getDBKeyFromRequest(request);
+  async function (request, jwtPayload, done) {  
+    let dbKey = await common.getDBKeyFromRequest(request);
     const User = dbRepo[dbKey].User;
     return User.findByPk(jwtPayload.id)
       .then(user => {
