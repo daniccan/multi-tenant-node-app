@@ -1,5 +1,9 @@
 # multi-tenant-node-app
 
+## What is this?
+
+This is a proof-of-concept (POC), multi-tenant [RESTful Web Services](https://restfulapi.net/) application built on top of [NodeJS](https://nodejs.org/en/).
+
 ## APIs
 
 **Note:** For APIs other than `Signup` and `Authentication`, pass the `JWT Token` in the `Authorization` header of the request.

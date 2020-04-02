@@ -3,8 +3,8 @@ const env = process.env.NODE_ENV || 'development';
 const config = require('../../config/config.json')[env];
 const migrationPath = path.resolve(__dirname + '/../../migrations');
 
-const db = require('../../models');
-const Account = db.Account;
+const dbRepo = require('../../models');
+const Account = dbRepo['default'].Account;
 
 const cli = require('../utils/cli');
 const logger = require('../utils/logger');

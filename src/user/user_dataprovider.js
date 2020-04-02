@@ -1,5 +1,5 @@
-const db = require('../../models');
-const User = db.User;
+const dbRepo = require('../../models');
+const User = dbRepo['default'].User;
 
 let UserDataProvider = {
 

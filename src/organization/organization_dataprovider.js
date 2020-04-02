@@ -1,5 +1,5 @@
-const db = require('../../models');
-const Organization = db.Organization;
+const dbRepo = require('../../models');
+const Organization = dbRepo['default'].Organization;
 
 let OrganizationDataProvider = {
 
