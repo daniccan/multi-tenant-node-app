@@ -5,15 +5,19 @@ const ExtractJWT = passportJWT.ExtractJwt;
 const JWTStrategy   = passportJWT.Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 
-const dbRepo = require("./models");
-const User = dbRepo['default'].User;
+const dbRepo = require('./models');
+
+const common = require('./src/utils/common');
 
 passport.use(new LocalStrategy(
   {
     usernameField: 'email',
-    passwordField: 'password'
+    passwordField: 'password',
+    passReqToCallback: true
   },
-  function(email, password, done) {
+  function(request, email, password, done) {
+    let dbKey = common.getDBKeyFromRequest(request);
+    const User = dbRepo[dbKey].User;
     return User.findOne({ where: { email: email, password: password }, attributes: { exclude: ['password'] } })
       .then(user => {
         if(!user) {
@@ -27,9 +31,12 @@ passport.use(new LocalStrategy(
 passport.use(new JWTStrategy(
   {
     jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-    secretOrKey: 'your_jwt_secret'
+    secretOrKey: 'your_jwt_secret',
+    passReqToCallback: true
   }, 
-  function (jwtPayload, done) {  
+  function (request, jwtPayload, done) {  
+    let dbKey = common.getDBKeyFromRequest(request);
+    const User = dbRepo[dbKey].User;
     return User.findByPk(jwtPayload.id)
       .then(user => {
           return done(null, user);

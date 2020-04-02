@@ -4,6 +4,7 @@ const responder = require('../utils/responder');
 let UserController = {
 
   getUsers: async (request, response, next) => {
+    console.log(request.headers['x-tenant-id']);
     try {
       let users = await userService.getUsers();
       responder.sendResponse(response, 200, "success", users, "Users retrieved successfully.");

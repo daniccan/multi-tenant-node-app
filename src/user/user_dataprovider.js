@@ -1,9 +1,9 @@
 const dbRepo = require('../../models');
-const User = dbRepo['default'].User;
 
 let UserDataProvider = {
 
   getUsers: async() => {
+    const User = dbRepo['default'].User;
     return new Promise(function(resolve, reject) {
       User.findAll({ attributes: { exclude: ['password'] } })
         .then(data => {
@@ -15,6 +15,7 @@ let UserDataProvider = {
   },
 
   getUser: async(userId) => {
+    const User = dbRepo['default'].User;
     return new Promise(function(resolve, reject) {
       User.findOne({ where: { id: userId }, attributes: { exclude: ['password'] } })
         .then(data => {
@@ -26,6 +27,7 @@ let UserDataProvider = {
   },
 
   createUser: async(body) => {
+    const User = dbRepo['default'].User;
     return new Promise(function(resolve, reject) {
       User.create(body)
         .then(data => {
@@ -41,6 +43,7 @@ let UserDataProvider = {
   },
 
   deleteUser: async(userId) => {
+    const User = dbRepo['default'].User;
     return new Promise(function(resolve, reject) {
       User.destroy({ where: { id: userId } })
         .then(data => {

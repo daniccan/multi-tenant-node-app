@@ -30,6 +30,17 @@ let SignupDataProvider = {
 
     logger.info(`Run Migrations on Tenant Database[Name: tenant_${accountId}]`);
     await cli.executeCommand(`node_modules/.bin/sequelize db:migrate --url ${connectionString} --migrations-path=${migrationPath}`);
+  },
+
+  getAccount: async(accountId) => {
+    return new Promise(function(resolve, reject) {
+      Account.findOne({ where: { id: accountId } })
+        .then(data => {
+          resolve(data);
+        }).catch(err => {
+          reject(err);
+        });
+    });
   }
 };
 

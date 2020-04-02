@@ -1,9 +1,9 @@
 const dbRepo = require('../../models');
-const Organization = dbRepo['default'].Organization;
 
 let OrganizationDataProvider = {
 
   getOrganizations: async() => {
+    const Organization = dbRepo['default'].Organization;
     return new Promise(function(resolve, reject) {
       Organization.findAll()
         .then(data => {
@@ -15,6 +15,7 @@ let OrganizationDataProvider = {
   },
 
   getOrganization: async(organizationId) => {
+    const Organization = dbRepo['default'].Organization;
     return new Promise(function(resolve, reject) {
       Organization.findOne({ where: { id: organizationId } })
         .then(data => {
@@ -26,6 +27,7 @@ let OrganizationDataProvider = {
   },
 
   createOrganization: async(body) => {
+    const Organization = dbRepo['default'].Organization;
     return new Promise(function(resolve, reject) {
       Organization.create(body)
         .then(data => {
@@ -41,6 +43,7 @@ let OrganizationDataProvider = {
   },
 
   deleteOrganization: async(organizationId) => {
+    const Organization = dbRepo['default'].Organization;
     return new Promise(function(resolve, reject) {
       Organization.destroy({ where: { id: organizationId } })
         .then(data => {
