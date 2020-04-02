@@ -10,11 +10,11 @@ Authorization: Bearer <JWT Token>
 
 ### Authentication
 
-* POST `/auth/login`
+* POST `/api/v1/auth/login`
 
 ```
 {
-  "email": "johndoe@github.com",
+  "email": "johndoe@google.com",
   "password": "5f4dcc3b5aa765d61d8327deb882cf99"
 }
 ```
