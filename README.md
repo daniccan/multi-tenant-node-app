@@ -2,10 +2,10 @@
 
 ## APIs
 
-**Note:** For APIs other than `/auth/login`, pass the `JWT Token` as `Authorization` header.
+**Note:** For APIs other than `/auth/login`, pass the `JWT Token` in the `Authorization` header of the request.
 
 ```
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3ROYW1lIjoiSm9obiIsImxhc3ROYW1lIjoiRG9lIiwiZW1haWwiOiJqb2huZG9lQGdpdGh1Yi5jb20iLCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJjcmVhdGVkQXQiOiIyMDIwLTA0LTAxVDExOjMzOjQ5LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIwLTA0LTAxVDExOjMzOjQ5LjAwMFoiLCJPcmdhbml6YXRpb25JZCI6bnVsbCwiaWF0IjoxNTg1NzUxMDMwfQ.pFM0DspqwJX87jqYF846Dn-k6XSB_EIjUImT6n1tjcI 
+Authorization: Bearer <JWT Token>
 ```
 
 ### Authentication
@@ -29,8 +29,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3ROY
 
 ```
 {
-  "name": "GitHub",
-  "domain": "github.com"
+  "name": "Google",
+  "domain": "google.com"
 }
 ```
 
@@ -48,7 +48,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3ROY
 {
   "firstName": "John",
   "lastName": "Doe",
-  "email": "johndoe@github.com",
+  "email": "johndoe@google.com",
   "password": "5f4dcc3b5aa765d61d8327deb882cf99"
 }
 ```
