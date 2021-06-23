@@ -27,10 +27,10 @@ let SignupDataProvider = {
     let connectionString = `${config.dialect}://${config.username}:${config.password}@${config.host}/tenant_${accountId}`;
 
     logger.info(`Create Database for Tenant[Name: tenant_${accountId}]`);
-    await cli.executeCommand(`node_modules/.bin/sequelize db:create --url ${connectionString}`);
+    await cli.executeCommand(`npx sequelize db:create --url ${connectionString}`);
 
     logger.info(`Run Migrations on Tenant Database[Name: tenant_${accountId}]`);
-    await cli.executeCommand(`node_modules/.bin/sequelize db:migrate --url ${connectionString} --migrations-path=${migrationPath}`);
+    await cli.executeCommand(`npx sequelize db:migrate --url ${connectionString} --migrations-path=${migrationPath}`);
   
     dbConnector.addSequelizeConnectionToRepo(dbRepo, `tenant_${accountId}`);
   },
