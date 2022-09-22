@@ -11,7 +11,7 @@ let DBConnector = {
     const db = {};
 
     let sequelize;
-    if(dbKey === 'default') {
+    if (dbKey === 'default') {
       sequelize = new Sequelize(config.database, config.username, config.password, config);
     } else {
       sequelize = new Sequelize(dbKey, config.username, config.password, config);
@@ -23,7 +23,10 @@ let DBConnector = {
         return (file.indexOf('.') !== 0) && (file !== 'index.js') && (file.slice(-3) === '.js');
       })
       .forEach(file => {
-        const model = sequelize['import'](path.join(modelsDir, file));
+        const model = require(path.join(modelsDir, file))(
+          sequelize,
+          Sequelize.DataTypes
+        );
         db[model.name] = model;
       });
 

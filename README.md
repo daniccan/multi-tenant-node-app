@@ -11,6 +11,10 @@ This is a proof-of-concept (POC), multi-tenant [RESTful Web Services](https://re
 npm install
 ```
 * Verify the Database configuration in `config/config.json`.
+* Create DB using Sequelize.
+```
+npx sequelize-cli db:create
+```
 * Run migrations on the main database.
 ```
 npx sequelize-cli db:migrate

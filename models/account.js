@@ -1,24 +1,31 @@
 'use strict';
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  const Account = sequelize.define('Account', {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
+  class Account extends Model {
+    static associate(models) { }
+  }
+  Account.init(
+    {
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      domain: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      owner: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      }
     },
-    domain: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
-    owner: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
+    {
+      sequelize,
+      modelName: "Account",
     }
-  }, {});
-  Account.associate = function(models) {
-    // associations can be defined here
-  };
+  );
   return Account;
 };
